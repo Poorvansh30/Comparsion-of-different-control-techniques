@@ -75,8 +75,8 @@ This trains the ML-PID controller (~1 minute), runs all four controllers on the 
 
 - Test MPC's constraint-handling advantage under a larger disturbance or tighter actuator limit, where LQR's linearization should break down but MPC should still recover.
 - Add sensor noise and a state estimator (Kalman filter) — all four controllers currently assume perfect full-state feedback.
-- Extend to a distributed-mass pendulum rod (vs. the current point-mass assumption) to better match a physical hardware rig.
 - Try a genuinely nonlinear MPC formulation to quantify the performance left on the table by linearizing.
+- Implement Gain scheduling, interpolating PID gains to increase robustness over a wider operational range.
 
 ## Author
 
