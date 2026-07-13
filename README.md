@@ -2,7 +2,7 @@
 
 A from-scratch implementation and benchmark of four control strategies — **manually-tuned PID**, **differential-evolution-optimized PID**, **LQR**, and **constrained MPC** — on the classical nonlinear cart-pole system, built entirely in Python.
 
-
+![Comparative results](plots/Comparative_Overview.png)
 
 ## Why this project
 
@@ -45,7 +45,7 @@ Benchmark: all controllers start from a `θ₀ = 0.2 rad` disturbance and are si
 
 **Key takeaway:** the ML-optimized PID controller matches the manual PID's settling speed with **~670× less control effort**, while LQR and MPC achieve the smoothest, lowest-effort responses at the cost of a slower settling time — a direct, measured illustration of the synthesis-cost vs. runtime-cost vs. performance trade-off across classical, black-box, and optimal control approaches.
 
-See [`report/Inverted_Pendulum_Control_Report.docx`](report/Inverted_Pendulum_Control_Report.docx) for the full write-up, derivations, plots, and discussion.
+See [`Inverted_Pendulum_Control_Report.pdf`](Inverted_Pendulum_Control_Report.pdf) for the full write-up, derivations, plots, and discussion.
 
 ## Repository structure
 
@@ -57,8 +57,9 @@ cart_pendulum/
 ├── LQR.py            # Linearization + Riccati-based LQR
 ├── MPC.py            # Discretized, constrained MPC (cvxpy/OSQP)
 └── main.py           # Benchmark harness: runs all controllers, computes metrics, plots results
-report/
-└── Inverted_Pendulum_Control_Report.docx   # Full project report
+plots/
+└── *.png             # Comparative and per-controller response plots
+Inverted_Pendulum_Control_Report.pdf   # Full project report
 ```
 
 ## Running it
@@ -76,7 +77,7 @@ This trains the ML-PID controller (~1 minute), runs all four controllers on the 
 - Test MPC's constraint-handling advantage under a larger disturbance or tighter actuator limit, where LQR's linearization should break down but MPC should still recover.
 - Add sensor noise and a state estimator (Kalman filter) — all four controllers currently assume perfect full-state feedback.
 - Try a genuinely nonlinear MPC formulation to quantify the performance left on the table by linearizing.
-- Implement Gain scheduling, interpolating PID gains to increase robustness over a wider operational range.
+- Implement gain scheduling to interpolate PID gains across operating regions, improving robustness for large-angle disturbances where fixed linear gains are known to degrade.
 
 ## Author
 
