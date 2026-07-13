@@ -2,7 +2,7 @@
 
 A from-scratch implementation and benchmark of four control strategies — **manually-tuned PID**, **differential-evolution-optimized PID**, **LQR**, and **constrained MPC** — on the classical nonlinear cart-pole system, built entirely in Python.
 
-![Comparative results](plots/Comparative_Overview.png)
+
 
 ## Why this project
 
